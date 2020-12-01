@@ -53,11 +53,11 @@ public class GuiContainer extends JDialog {
     }
 
     public static void show(String dialogTitle, SnakeGameEnvironment drawingEnvironment){
-        //GuiContainer guiContainer = new GuiContainer(dialogTitle, drawingEnvironment);
-        //guiContainer.setVisible(true);
-        EventQueue.invokeLater(() -> {
-            GuiContainer guiContainer = new GuiContainer(dialogTitle, drawingEnvironment);
-            guiContainer.setVisible(true);
-        });
+        GuiContainer guiContainer = new GuiContainer(dialogTitle, drawingEnvironment);
+        guiContainer.setVisible(true);
+        //EventQueue.invokeLater(() -> {
+        //    GuiContainer guiContainer = new GuiContainer(dialogTitle, drawingEnvironment);
+        //    guiContainer.setVisible(true);
+        //});
     }
 }

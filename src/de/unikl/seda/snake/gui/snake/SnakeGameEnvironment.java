@@ -13,18 +13,16 @@ public class SnakeGameEnvironment extends GameEnvironment {
     private final String playerName;
     private int points = 0;
     private boolean[][] highlightedTiles;
-    private SnakeGameEnvironment.AutoMovementThread autoMovementThread;
+    private SnakeGameEnvironment.MovementThread autoMovementThread;
     int selectedTileX = 0;
     int selectedTileY = 0;
     private int count = 0;
 
     public SnakeGameEnvironment(String playerName, int height, int width, int squareSize) {
-        // sets the size of the snake environment
-        //super(height, width + gameInfoBannerHeight);
-        super(width,height +25);
+        super(width,height + gameInfoBannerHeight);
         this.playerName = playerName;
         this.drawer = new SnakeSceneDrawer(width, height, squareSize, 25);
-        this.autoMovementThread = new SnakeGameEnvironment.AutoMovementThread();
+        this.autoMovementThread = new SnakeGameEnvironment.MovementThread();
         this.highlightedTiles = new boolean[this.drawer.getLevelTilesCountX()][this.drawer.getLevelTilesCountY()];
         this.autoMovementThread.start();
     }
@@ -88,11 +86,11 @@ public class SnakeGameEnvironment extends GameEnvironment {
         this.drawer.drawFood(graphics);
     }
 
-    private class AutoMovementThread extends Thread {
+    private class MovementThread extends Thread {
         private final SnakeGameEnvironment gameEnvironment = SnakeGameEnvironment.this;
         private SnakeGameEnvironment.MovementDirection currentMovementDirection;
 
-        public AutoMovementThread() {
+        public MovementThread() {
             this.setDaemon(true);
         }
 
@@ -130,7 +128,7 @@ public class SnakeGameEnvironment extends GameEnvironment {
         }
     }
 
-    private static enum MovementDirection {
+    private enum MovementDirection {
         UP,
         DOWN,
         LEFT,

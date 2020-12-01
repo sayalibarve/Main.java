@@ -27,23 +27,26 @@ public class Main {
             JFrame f = new JFrame("Button Example");
             //submit button
             JButton b = new JButton("Submit");
-            b.setBounds(100, 100, 140, 40);
+            b.setBounds(100, 250, 140, 40);
             //enter name label
             JLabel label = new JLabel();
             label.setText("Enter Name :");
             label.setBounds(10, 10, 100, 100);
-            //empty label which will show event after button clicked
-            JLabel label1 = new JLabel();
-            label1.setBounds(10, 110, 200, 100);
             //textfield to enter name
             JTextField textfield = new JTextField();
-            textfield.setBounds(110, 50, 130, 30);
+            textfield.setBounds(150, 50, 130, 30);
+            JLabel l = new JLabel();
+            l.setText("Enter Square Size");
+            l.setBounds(10, 90, 100, 100);
+            JTextField squareSize = new JTextField();
+            squareSize.setBounds(150, 130, 130, 30);
             //add to frame
-            f.add(label1);
+            f.add(squareSize);
+            f.add(l);
             f.add(textfield);
             f.add(label);
             f.add(b);
-            f.setSize(300, 300);
+            f.setSize(500, 600);
             f.setLayout(null);
             f.setVisible(true);
             f.setLocationRelativeTo(null);
@@ -53,9 +56,11 @@ public class Main {
             b.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-                    label1.setText("Name has been submitted.");
                     String playerName = textfield.getText();
-                    SnakeGameEnvironment game = new SnakeGameEnvironment(playerName, 400, 600, 10);
+                    String size = squareSize.getText();
+                    int squareSize = Integer.parseInt(size);
+
+                    SnakeGameEnvironment game = new SnakeGameEnvironment(playerName, 400, 600,squareSize);
                     f.setVisible(false);
                     //Start game session
                     GuiContainer.show("Snake", game);
