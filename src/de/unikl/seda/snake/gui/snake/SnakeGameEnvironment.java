@@ -72,11 +72,12 @@ public class SnakeGameEnvironment extends GameEnvironment {
 
     @Override
     protected void handleReturnPress() {
+        int x = this.points;
         System.out.println("RETURN");
-        JOptionPane.showMessageDialog(null,"POINTS DEDUCTED:You Presses Enter.");
-        --this.points;
         this.highlightedTiles[this.selectedTileX][this.selectedTileY] = !this.highlightedTiles[this.selectedTileX][this.selectedTileY];
         System.out.println("Highlighted tile on Enter: " + this.selectedTileX + "x" + this.selectedTileY + " -> " + this.highlightedTiles[this.selectedTileX][this.selectedTileY]);
+        --this.points;
+        JOptionPane.showMessageDialog(null, "Points deducted by:"+(x-this.points));
     }
 
     @Override
@@ -95,10 +96,6 @@ public class SnakeGameEnvironment extends GameEnvironment {
 
         public void setCurrentMovementDirection(SnakeGameEnvironment.MovementDirection currentMovementDirection) {
             this.currentMovementDirection = currentMovementDirection;
-        }
-
-        public SnakeGameEnvironment.MovementDirection getCurrentMovementDirection() {
-            return this.currentMovementDirection;
         }
 
         public void run() {
