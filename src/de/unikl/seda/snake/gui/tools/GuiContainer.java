@@ -3,15 +3,14 @@ package de.unikl.seda.snake.gui.tools;
 import de.unikl.seda.snake.gui.snake.SnakeGameEnvironment;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.lang.reflect.InvocationTargetException;
+
 
 /** This container class is used to simply show an empty window, which contains the @{@link SnakeGameEnvironment}.*/
 public class GuiContainer extends JDialog {
-    private static final int windowHeightOffset = 39;
-    private static final int windowWidthOffset = 16;
+    private static final int windowHeightOffset = 25;
+    private static final int windowWidthOffset = 12;
 
     public GuiContainer(String dialogTitle, SnakeGameEnvironment drawingEnvironment) {
         super(createTaskbarFrame(dialogTitle));
@@ -37,6 +36,7 @@ public class GuiContainer extends JDialog {
                 JFrame taskbarFrame = (JFrame) getParent();
                 taskbarFrame.setVisible(false);
                 taskbarFrame.dispose();
+                System.exit(0);
             }
         });
     }
@@ -55,9 +55,5 @@ public class GuiContainer extends JDialog {
     public static void show(String dialogTitle, SnakeGameEnvironment drawingEnvironment){
         GuiContainer guiContainer = new GuiContainer(dialogTitle, drawingEnvironment);
         guiContainer.setVisible(true);
-        //EventQueue.invokeLater(() -> {
-        //    GuiContainer guiContainer = new GuiContainer(dialogTitle, drawingEnvironment);
-        //    guiContainer.setVisible(true);
-        //});
     }
 }

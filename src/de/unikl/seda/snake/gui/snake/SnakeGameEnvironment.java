@@ -4,8 +4,7 @@ import de.unikl.seda.snake.gui.tools.GameEnvironment;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class SnakeGameEnvironment extends GameEnvironment {
     private static final int gameInfoBannerHeight = 25;
@@ -74,16 +73,16 @@ public class SnakeGameEnvironment extends GameEnvironment {
     @Override
     protected void handleReturnPress() {
         System.out.println("RETURN");
+        JOptionPane.showMessageDialog(null,"POINTS DEDUCTED:You Presses Enter.");
+        --this.points;
         this.highlightedTiles[this.selectedTileX][this.selectedTileY] = !this.highlightedTiles[this.selectedTileX][this.selectedTileY];
-        System.out.println("Highlight tile: " + this.selectedTileX + "x" + this.selectedTileY + " -> " + this.highlightedTiles[this.selectedTileX][this.selectedTileY]);
+        System.out.println("Highlighted tile on Enter: " + this.selectedTileX + "x" + this.selectedTileY + " -> " + this.highlightedTiles[this.selectedTileX][this.selectedTileY]);
     }
 
     @Override
     protected void drawSnakeEnvironment(Graphics2D graphics) {
         this.drawer.drawLevel(graphics, this.selectedTileX, this.selectedTileY, this.highlightedTiles);
-        this.drawer.drawInfos(graphics, this.playerName, this.points);
-        this.drawer.drawSnake(graphics);
-        this.drawer.drawFood(graphics);
+        this.drawer.drawInfo(graphics, this.playerName, this.points);
     }
 
     private class MovementThread extends Thread {
@@ -133,8 +132,5 @@ public class SnakeGameEnvironment extends GameEnvironment {
         DOWN,
         LEFT,
         RIGHT;
-
-        private MovementDirection() {
-        }
     }
 }
